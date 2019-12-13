@@ -8,7 +8,7 @@
     "dev:start": "rollup -c -w",
     "dev:serve": "serve dist",
     "dev:docs": "docsify serve docs",
-    "deb:open": "open-cli http://localhost:3000",
+    "dev:open": "open-cli http://localhost:3000",
     "clean": "rimraf ./dist",
     "build": "run-s build:*",
     "build:rollup": "rollup -c",
