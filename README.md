@@ -1,4 +1,15 @@
-# docsify-github-embed
+# Docsify Github Embed
+<p align="center">
+  <img src="https://docsify.js.org/_media/icon.svg" />
+  <br />
+  <code>docsify-github-embed</code>
+</p>
+
+## TODO
+* I'm having issues with the embed within a loop. Will need to fix. Hardcoded it works.
+* Addo to the gloabl `document` `prototype` so I can chain operations allowing for cleaner code.
+* Add source maps to `rollup.config.js` so it's easier to debug issues.
+* Publish package, finally.
 
 A plugin for docsify sidebar collapsed default
 
