@@ -10,6 +10,7 @@
 * Addo to the gloabl `document` `prototype` so I can chain operations allowing for cleaner code.
 * Add source maps to `rollup.config.js` so it's easier to debug issues.
 * Publish package, finally.
+* Make the plugin repo so others can make their plugins with ease as well.
 
 A plugin for docsify sidebar collapsed default
 
