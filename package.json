@@ -13,7 +13,7 @@
     "dev:docs": "docsify serve docs",
     "dev:open": "open-cli http://localhost:3000",
     "clean": "rimraf ./dist",
-    "prepare": "rollup -c"
+    "build": "rollup -c"
   },
   "keywords": [ "docsify", "github", "embed" ],
   "files": [ "src", "dist" ],
