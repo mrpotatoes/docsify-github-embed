@@ -1,6 +1,6 @@
 {
   "name": "docsify-github-embed",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Embed your github code in your docsify site! Even line numbers and such!",
   "author": "Andric LibreSinn",
   "license": "MIT",
