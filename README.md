@@ -1,3 +1,8 @@
+<!--
+* https://medium.com/dailyjs/the-pitfalls-of-async-await-in-array-loops-cf9cf713bfeb#2423
+* https://zellwk.com/blog/async-await-in-loops/
+-->
+
 # Docsify Github Embed
 <p align="center">
   <img src="https://docsify.js.org/_media/icon.svg" />
