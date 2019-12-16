@@ -1562,3 +1562,4 @@
   }].concat($docsify.plugins || []);
 
 })));
+//# sourceMappingURL=docsify-github-embed.js.map

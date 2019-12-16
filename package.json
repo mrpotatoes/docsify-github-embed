@@ -1,6 +1,6 @@
 {
   "name": "docsify-github-embed",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "sidebar-collapse plugin for docsify",
   "main": "src",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev:start": "rollup -c -w -m",
     "dev:serve": "serve dist",
     "dev:docs": "docsify serve docs",
-    "-dev:open": "open-cli http://localhost:3000",
+    "dev:open": "open-cli http://localhost:3000",
     "clean": "rimraf ./dist",
     "build": "run-s build:*",
     "build:rollup": "rollup -c",

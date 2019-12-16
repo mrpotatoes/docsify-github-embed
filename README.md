@@ -31,7 +31,7 @@ In your html file add the plugin like so:
       // ...
     }
   </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify-github-embed@1.0.0/dist/docsify-github-embed.js"></script>
 
   <!-- plugins -->
   <script src="//unpkg.???????.min.js">
