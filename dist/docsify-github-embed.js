@@ -3,6 +3,56 @@
   factory();
 }((function () { 'use strict';
 
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  var arrayWithHoles = _arrayWithHoles;
+
+  function _iterableToArrayLimit(arr, i) {
+    if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+      return;
+    }
+
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  var iterableToArrayLimit = _iterableToArrayLimit;
+
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  }
+
+  var nonIterableRest = _nonIterableRest;
+
+  function _slicedToArray(arr, i) {
+    return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+  }
+
+  var slicedToArray = _slicedToArray;
+
   function _arrayWithoutHoles(arr) {
     if (Array.isArray(arr)) {
       for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
@@ -1329,50 +1379,42 @@
   };
   var codePartial = function codePartial(lines, code) {
     return code.split("\n").slice(lines[0] - 1, lines[1]).join('\n');
-  };
-
-  function styleInject(css, ref) {
-    if ( ref === void 0 ) ref = {};
-    var insertAt = ref.insertAt;
-
-    if (!css || typeof document === 'undefined') { return; }
-
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var style = document.createElement('style');
-    style.type = 'text/css';
-
-    if (insertAt === 'top') {
-      if (head.firstChild) {
-        head.insertBefore(style, head.firstChild);
-      } else {
-        head.appendChild(style);
-      }
-    } else {
-      head.appendChild(style);
-    }
-
-    if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }
-  }
-
-  var css = ".sidebar-nav > ul > li ul {\n  display: none;\n}\n\n.app-sub-sidebar {\n  display: none;\n}\n\n.app-sub-sidebar.open {\n  display: block;\n}\n\n.sidebar-nav .open > ul:not(.app-sub-sidebar),\n.sidebar-nav .active:not(.hold) > ul {\n  display: block;\n}\n\n.active + ul.app-sub-sidebar {\n  display: block;\n}\n";
-  styleInject(css);
+  }; // Tag builder.
 
   var codeblock = function codeblock(code) {
     var tag = document.createElement('code');
     tag.innerHTML = code;
     tag.setAttribute('class', 'lang-js');
     return tag;
-  };
+  }; // Tag builder.
 
   var preformatted = function preformatted(codeString) {
     var pre = document.createElement('pre');
     pre.appendChild(codeblock(codeString));
     pre.setAttribute('data-lang', 'js');
     return pre;
+  }; // Break up the URL into bits I need.
+
+  var urlParts = function urlParts(url) {
+    var parsedUrl = new URL(url);
+    var isApiUrl = parsedUrl.hostname.split('.github.com').length === 2;
+    var hash = parsedUrl.hash; // Straight up this is a garbage way of handling this.
+
+    if (!parsedUrl.hostname.includes('github')) {
+      throw new Error('Yo, we only care about gihub. Sorry');
+    } // Reset some properties to go to the right url.
+
+
+    parsedUrl.hash = ''; // unset the hash.
+
+    parsedUrl.hostname = 'raw.githubusercontent.com'; // default to raw.githubcontent.
+
+    parsedUrl.pathname = parsedUrl.pathname.replace('blob/', ''); // Remove.
+
+    return {
+      parsedUrl: parsedUrl,
+      hash: hash
+    };
   };
 
   var fetchCode =
@@ -1381,43 +1423,35 @@
     var _ref = asyncToGenerator(
     /*#__PURE__*/
     regenerator.mark(function _callee(url) {
-      var parsedUrl, isApiUrl, hash, response, data;
+      var _urlParts, hash, parsedUrl, response, data;
+
       return regenerator.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              parsedUrl = new URL(url);
-              isApiUrl = parsedUrl.hostname.split('.github.com').length === 2;
-              hash = parsedUrl.hash; // Straight up this is a garbage way of handling this.
+              _urlParts = urlParts(url), hash = _urlParts.hash, parsedUrl = _urlParts.parsedUrl;
+              _context.next = 3;
+              return fetch(parsedUrl);
 
-              if (parsedUrl.hostname.includes('github')) {
-                _context.next = 5;
+            case 3:
+              response = _context.sent;
+              _context.next = 6;
+              return response.text();
+
+            case 6:
+              data = _context.sent;
+
+              if (!(response.status !== 200)) {
+                _context.next = 9;
                 break;
               }
 
-              throw new Error('Yo, we only care about gihub. Sorry');
+              return _context.abrupt("return", 'That URL gave us a 404, may wanna put in a new one.');
 
-            case 5:
-              // Reset some properties to go to the right url.
-              parsedUrl.hash = ''; // unset the hash.
-
-              parsedUrl.hostname = 'raw.githubusercontent.com'; // default to raw.githubcontent.
-
-              parsedUrl.pathname = parsedUrl.pathname.replace('blob/', ''); // Remove.
-
-              _context.next = 10;
-              return fetch(parsedUrl);
-
-            case 10:
-              response = _context.sent;
-              _context.next = 13;
-              return response.text();
-
-            case 13:
-              data = _context.sent;
+            case 9:
               return _context.abrupt("return", hash ? codePartial(lines(hash), data) : data);
 
-            case 15:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -1437,66 +1471,88 @@
     function () {
       var _ref2 = asyncToGenerator(
       /*#__PURE__*/
-      regenerator.mark(function _callee3(html, next) {
-        var parser, doc, embeds, idx, url, code, pre;
-        return regenerator.wrap(function _callee3$(_context3) {
+      regenerator.mark(function _callee2(html, next) {
+        var parser, doc, embeds, urls, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, _step$value, idx, url, code, pre;
+
+        return regenerator.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 parser = new DOMParser();
                 doc = parser.parseFromString(html, 'text/html');
                 embeds = toConsumableArray(doc.querySelectorAll('github-embed'));
-                embeds.forEach(
-                /*#__PURE__*/
-                function () {
-                  var _ref3 = asyncToGenerator(
-                  /*#__PURE__*/
-                  regenerator.mark(function _callee2(embed, idx) {
-                    var url, code;
-                    return regenerator.wrap(function _callee2$(_context2) {
-                      while (1) {
-                        switch (_context2.prev = _context2.next) {
-                          case 0:
-                            url = embed.getAttribute('url');
-                            _context2.next = 3;
-                            return fetchCode(url);
+                urls = embeds.map(function (embed) {
+                  return embed.getAttribute('url');
+                });
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context2.prev = 7;
+                _iterator = urls.entries()[Symbol.iterator]();
 
-                          case 3:
-                            code = _context2.sent;
-                            console.log(idx);
-                            embed.appendChild(preformatted(code));
+              case 9:
+                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                  _context2.next = 19;
+                  break;
+                }
 
-                          case 6:
-                          case "end":
-                            return _context2.stop();
-                        }
-                      }
-                    }, _callee2, this);
-                  }));
-
-                  return function (_x4, _x5) {
-                    return _ref3.apply(this, arguments);
-                  };
-                }()); // This works, the above doesn't.
-
-                idx = 1;
-                url = embeds[idx].getAttribute('url');
-                _context3.next = 8;
+                _step$value = slicedToArray(_step.value, 2), idx = _step$value[0], url = _step$value[1];
+                _context2.next = 13;
                 return fetchCode(url);
 
-              case 8:
-                code = _context3.sent;
+              case 13:
+                code = _context2.sent;
                 pre = preformatted(code);
-                embeds[idx].appendChild(pre); // console.log(embeds.length)
+                embeds[idx].appendChild(pre);
 
+              case 16:
+                _iteratorNormalCompletion = true;
+                _context2.next = 9;
+                break;
+
+              case 19:
+                _context2.next = 25;
+                break;
+
+              case 21:
+                _context2.prev = 21;
+                _context2.t0 = _context2["catch"](7);
+                _didIteratorError = true;
+                _iteratorError = _context2.t0;
+
+              case 25:
+                _context2.prev = 25;
+                _context2.prev = 26;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 28:
+                _context2.prev = 28;
+
+                if (!_didIteratorError) {
+                  _context2.next = 31;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 31:
+                return _context2.finish(28);
+
+              case 32:
+                return _context2.finish(25);
+
+              case 33:
                 next(doc.documentElement.innerHTML);
 
-              case 12:
+              case 34:
               case "end":
-                return _context3.stop();
+                return _context2.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee2, this, [[7, 21, 25, 33], [26,, 28, 32]]);
       }));
 
       return function (_x2, _x3) {

@@ -1,18 +1,18 @@
 {
   "name": "docsify-github-embed",
-  "version": "1.1.2",
+  "version": "1.0.0",
   "description": "sidebar-collapse plugin for docsify",
   "main": "src",
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:start": "rollup -c -w",
+    "dev:start": "rollup -c -w -m",
     "dev:serve": "serve dist",
     "dev:docs": "docsify serve docs",
-    "dev:open": "open-cli http://localhost:3000",
+    "-dev:open": "open-cli http://localhost:3000",
     "clean": "rimraf ./dist",
     "build": "run-s build:*",
     "build:rollup": "rollup -c",
-    "build:minify": "uglifyjs --compress --mangle --output ./dist/docsify-sidebar-collapse.min.js -- ./dist/docsify-sidebar-collapse.js"
+    "build:minify": "uglifyjs --compress --mangle --output ./dist/docsify-github-embed.min.js -- ./dist/docsify-github-embed.js"
   },
   "repository": {
     "type": "git",
@@ -38,14 +38,15 @@
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.1.6",
     "@babel/runtime": "^7.7.6",
+    "@rollup/plugin-node-resolve": "6.0.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.2",
     "rollup": "1.27.10",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-commonjs": "10.1.0",
-    "@rollup/plugin-node-resolve": "6.0.0",
     "rollup-plugin-postcss": "2.0.3",
+    "rollup-plugin-uglify": "^6.0.4",
     "uglify-js": "3.7.2"
   },
   "dependencies": {

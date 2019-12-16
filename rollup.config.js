@@ -2,14 +2,9 @@ import commonjs from 'rollup-plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 import postcss from 'rollup-plugin-postcss'
-// import nodent from 'rollup-plugin-nodent'
+import { uglify } from 'rollup-plugin-uglify'
+
 import pkgConfig from './package.json'
-
-const t = async () => {
-  const butts = await 10;
-
-  return butts
-}
 
 const outputs = (fileName) => ({
   input: 'src/index.js',
@@ -33,6 +28,7 @@ const outputs = (fileName) => ({
     postcss(),
     resolve(),
     commonjs(),
+    // uglify(),
   ]
 })
 

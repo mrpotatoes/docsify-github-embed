@@ -1,10 +1,11 @@
 # page-1.md
 
+## Heading
+
 <github-embed 
-	url="https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js#L4-L27"
+	url="https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.jds#L4-L27"
 />
 
-## Heading
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper sapien pharetra felis gravida scelerisque. Etiam tempus vitae sem a vehicula. Proin porttitor dolor posuere dolor feugiat, at tincidunt orci feugiat. Maecenas nisi ligula, gravida nec gravida tempus, ultrices pharetra augue. Sed et ultricies massa, sit amet sollicitudin nunc. Morbi fringilla nulla nec urna finibus interdum. Nunc a tincidunt lorem. Duis in scelerisque lorem. Praesent a metus id diam feugiat accumsan. Vivamus quis turpis rhoncus, tincidunt ipsum sed, venenatis lorem. Pellentesque eget orci lobortis, pulvinar justo at, fermentum sem. Donec ut tortor ullamcorper, ornare libero eget, facilisis odio. Integer non augue vel leo accumsan cursus vel ac ante.
 
 <github-embed 
@@ -16,6 +17,10 @@ Quisque porttitor aliquam posuere. Morbi dolor massa, blandit eget nulla eget, d
 
 ## Heading
 Integer ac malesuada metus, a ornare magna. Integer vestibulum, risus sit amet gravida accumsan, dolor metus malesuada quam, vel suscipit augue mi quis nulla. Morbi non iaculis mauris, id dapibus urna. Proin id nulla elementum, imperdiet purus tempus, eleifend augue. Aliquam molestie ligula nisl, sit amet finibus risus accumsan sit amet. Donec ac varius velit. Sed finibus venenatis iaculis. Cras ullamcorper, eros sed rutrum tincidunt, est velit commodo justo, in pulvinar magna quam ut tellus. Fusce maximus neque at arcu gravida fermentum. Proin id tellus et ligula sodales semper eget ac mauris. Cras eget varius libero. Donec id mauris id risus posuere semper. In at suscipit urna. Nulla tristique euismod libero et rhoncus. Nam sed urna id elit maximus feugiat vel vitae tortor. Integer pulvinar risus sit amet nulla elementum mattis.
+
+<github-embed 
+	url="https://github.com/facebook/react/blob/master/packages/create-subscription/src/createSubscription.js#L38-L45"
+/>
 
 ## Heading
 Fusce in est a arcu auctor commodo sit amet sodales ante. Quisque tortor orci, imperdiet ac malesuada ut, ultrices vitae tortor. Morbi quis imperdiet lacus, id ultricies enim. Nunc erat lacus, cursus sed mi suscipit, sollicitudin faucibus lectus. Quisque ut augue eget eros vehicula varius. Sed at eros turpis. Curabitur metus ante, faucibus sed porta eget, congue sed nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam scelerisque elementum nibh, scelerisque molestie ligula mattis hendrerit. Praesent vel est vitae purus varius porta sit amet at dolor. Pellentesque dignissim quam egestas facilisis lacinia.
