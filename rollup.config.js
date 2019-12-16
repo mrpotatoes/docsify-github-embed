@@ -6,7 +6,7 @@ import { uglify } from 'rollup-plugin-uglify'
 
 import pkgConfig from './package.json'
 
-const outputs = (fileName) => ({
+const defConfig = (fileName) => ({
   input: 'src/index.js',
   output: {
     file: `dist/${fileName}.js`,
@@ -14,7 +14,6 @@ const outputs = (fileName) => ({
   },
   plugins: [
     babel({
-      // runtimeHelpers: true
       babelrc: false,
       runtimeHelpers: true,
       exclude: 'node_modules/**',
@@ -28,11 +27,23 @@ const outputs = (fileName) => ({
     postcss(),
     resolve(),
     commonjs(),
-    // uglify(),
   ]
 })
 
+const outputs = (fileName, minify = false) => {
+  const config = defConfig(fileName)
+
+  // I mean, this is kinda gross but w/e.
+  if (minify) {
+    config.plugins.push(uglify())
+    config.output.file = `dist/${fileName}.min.js`
+  }
+
+  return config
+}
+
+// I run this for both even on build. Dun care. 
 export default [
   outputs('plugin'),
-  outputs(pkgConfig.name),
+  outputs(pkgConfig.name, true),
 ]

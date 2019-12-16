@@ -1,7 +1,10 @@
 {
   "name": "docsify-github-embed",
-  "version": "1.0.1",
-  "description": "sidebar-collapse plugin for docsify",
+  "version": "1.0.3",
+  "description": "Embed your github code in your docsify site! Even line numbers and such!",
+  "author": "Andric LibreSinn",
+  "license": "MIT",
+  "homepage": "https://github.com/mrpotatoes/docsify-github-embed#readme",
   "main": "src",
   "scripts": {
     "dev": "run-p dev:*",
@@ -10,29 +13,19 @@
     "dev:docs": "docsify serve docs",
     "dev:open": "open-cli http://localhost:3000",
     "clean": "rimraf ./dist",
-    "build": "run-s build:*",
-    "build:rollup": "rollup -c",
-    "build:minify": "uglifyjs --compress --mangle --output ./dist/docsify-github-embed.min.js -- ./dist/docsify-github-embed.js"
+    "prepare": "rollup -c"
   },
+  "keywords": [ "docsify", "github", "embed" ],
+  "files": [ "src", "dist" ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iPeng6/docsify-sidebar-collapse.git"
+    "url": "git+https://github.com/mrpotatoes/docsify-github-embed.git"
   },
-  "keywords": [
-    "docsify",
-    "sidebar",
-    "collapse"
-  ],
-  "files": [
-    "src",
-    "dist"
-  ],
-  "author": "ipeng6",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/iPeng6/docsify-sidebar-collapse/issues"
-  },
-  "homepage": "https://github.com/iPeng6/docsify-sidebar-collapse#readme",
+  "dependencies": {
+    "open-cli": "^5.0.0",
+    "serve": "^11.2.0",
+    "whatwg-fetch": "^3.0.0"
+  },  
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-transform-runtime": "^7.7.6",
@@ -48,10 +41,5 @@
     "rollup-plugin-postcss": "2.0.3",
     "rollup-plugin-uglify": "^6.0.4",
     "uglify-js": "3.7.2"
-  },
-  "dependencies": {
-    "open-cli": "^5.0.0",
-    "serve": "^11.2.0",
-    "whatwg-fetch": "^3.0.0"
   }
 }
