@@ -7,6 +7,8 @@
 
 A plugin for embedding github code into your wiki (unstyled). You can embed either full files or specific lines of code.
 
+![](./assets/example.png)
+
 ## Usage
 Install docsify `npm i docsify-cli -g`
 
