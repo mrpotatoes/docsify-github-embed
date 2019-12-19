@@ -18,18 +18,32 @@ In your html file add the plugin like so:
   <script src="//unpkg.com/docsify-github-embed/dist/docsify-github-embed.min.js" />
 ```
 
+Follow this link if you want different languages: https://docsify.now.sh/language-highlight then change the attribute: `':lang=*'` to what you want; for instance PHP would be `':lang=php'`
+
 Then within your markdown add a `github-embed` tag
 
 This will show the entire file.
-```html
-<github-embed url="https://github.com/path/to/source/code.ext" />
+```md
+[github-embed](https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js ':lang=js')
 ```
 
 This will show only render lines 4-27.
-```html
-<github-embed url="https://github.com/path/to/source/code.ext#L4-L27" />
+```md
+[github-embed](https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js#L4-L27 ':lang=js')
+```
+
+This will fail
+```md
+[github-embed](https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js2#L4-L27 ':lang=js')
+```
+
+and will look like this:
+```md
+That URL gave us a 404, may wanna put in a new one.
+
+https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js2#L4-L27
 ```
 
 ## TODO
 * Make the plugin repo so others can make their plugins with ease as well.
-* Add info about this: https://docsify.now.sh/language-highlight
+
