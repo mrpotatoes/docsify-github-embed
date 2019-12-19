@@ -52,4 +52,4 @@ https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master
 
 ## TODO
 * Make the plugin repo so others can make their plugins with ease as well.
-
+* Add referance images under each example.
