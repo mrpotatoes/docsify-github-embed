@@ -24,24 +24,24 @@ Then within your markdown add a `github-embed` tag
 
 This will show the entire file.
 ```md
-[github-embed](https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js ':lang=js')
+[github-embed](https://example.com/file.js ':lang=js')
 ```
 
 This will show only render lines 4-27.
 ```md
-[github-embed](https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js#L4-L27 ':lang=js')
+[github-embed](https://example.com/file.js#L4-L27 ':lang=js')
 ```
 
 This will fail
 ```md
-[github-embed](https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js2#L4-L27 ':lang=js')
+[github-embed](https://example.com/bad.js#L4-L27 ':lang=js')
 ```
 
 and will look like this:
 ```md
 That URL gave us a 404, may wanna put in a new one.
 
-https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js2#L4-L27
+https://example.com/bad.js#L4-L27
 ```
 
 ## To Note
