@@ -44,6 +44,12 @@ That URL gave us a 404, may wanna put in a new one.
 https://github.com/mrpotatoes/functional-programming-in-js-reference/blob/master/src/foundational/adts/diy.daggy.js2#L4-L27
 ```
 
+## To Note
+* Does not follow links
+* Only works with Github (PRs welcome for extra providers)
+* Default language is `js` because it's an excellent language.
+* Every code block will add links to the full file with `target=blank`.
+
 ## TODO
 * Make the plugin repo so others can make their plugins with ease as well.
 
