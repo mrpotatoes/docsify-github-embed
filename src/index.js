@@ -1,39 +1,25 @@
 import 'whatwg-fetch'
-import { lines, codePartial, preformatted, urlParts } from './lib'
+import { replacer, lines, codePartial, preformatted, urlParts, withoutHtml } from './lib'
 
-const fetchCode = async (url) => {
-  const { hash, parsedUrl } = urlParts(url)
-  const response = await fetch(parsedUrl)
-  const data = await response.text()
+async function replaceAsync(str, regex, asyncFn) {
+  const promises = []
 
-  // If I ever want to do this better I really shoul consider it.
-  if (response.status !== 200) {
-    return 'That URL gave us a 404, may wanna put in a new one.'
-  }
+  str.replace(regex, (match, ...args) => {
+    const promise = asyncFn(match, ...args)
+    promises.push(promise)
+  })
 
-  // Get the lines from the code.
-  return (hash)
-    ? codePartial(lines(hash), data)
-    : data
+  const data = await Promise.all(promises)
+  return str.replace(regex, () => data.shift())
 }
 
 $docsify.plugins = [
   (hook, vm) => {
-    hook.doneEach(function(html, next) {})
+    hook.beforeEach(async (content, next) => {
+      const pattern = /\[github\-embed\]\((http|https:\/\/.+)\)/g
+      const replacedString = await replaceAsync(content, pattern, replacer)
 
-    hook.afterEach(async (html, next) => {
-      const parser = new DOMParser()
-      const doc = parser.parseFromString(html, 'text/html')
-      const embeds = [...doc.querySelectorAll('github-embed')]
-      const urls = embeds.map(embed => embed.getAttribute('url'))
-
-      for (const [idx, url] of urls.entries()) {
-        const code = await fetchCode(url)
-        const pre = preformatted(code)
-        embeds[idx].appendChild(pre)
-      }
-
-      next(doc.documentElement.innerHTML)
+      next(replacedString)
     })
   }
 ].concat($docsify.plugins || [])

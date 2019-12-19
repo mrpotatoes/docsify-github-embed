@@ -32,3 +32,4 @@ This will show only render lines 4-27.
 
 ## TODO
 * Make the plugin repo so others can make their plugins with ease as well.
+* Add info about this: https://docsify.now.sh/language-highlight
